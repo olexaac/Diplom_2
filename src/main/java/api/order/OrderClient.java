@@ -6,6 +6,7 @@ import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
 
+
 public class OrderClient extends Client {
 
     private final static String PATH_INGREDIENTS = "api/ingredients";
@@ -17,7 +18,8 @@ public class OrderClient extends Client {
                 .spec(getSpec())
                 .when()
                 .get(PATH_INGREDIENTS)
-                .then();
+                .then()
+                .log().all();
     }
     @Step("Запрос на создание заказа")
     public ValidatableResponse create(Order order, String actualAccessToken) {
@@ -27,7 +29,8 @@ public class OrderClient extends Client {
                 .body(order)
                 .when()
                 .post(PATH_ORDER)
-                .then();
+                .then()
+                .log().all();
     }
     @Step("Запрос на получение списка заказов")
     public ValidatableResponse orders(String actualAccessToken) {
@@ -36,6 +39,7 @@ public class OrderClient extends Client {
                 .header("authorization", actualAccessToken)
                 .when()
                 .get(PATH_ORDER)
-                .then();
+                .then()
+                .log().all();
     }
 }

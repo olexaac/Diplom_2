@@ -51,7 +51,6 @@ public class OrderCreateTest {
         ValidatableResponse responseOrder = orderClient.create(new Order(new String[]{getIngredients.get(0),getIngredients.get(1), getIngredients.get(4)}), actualAccessToken);
         getCreatingOrder = responseOrder.extract().path("order.number");
         responseOrder.assertThat().body("order.number", is(notNullValue())).and().statusCode(200);
-        System.out.println(getCreatingOrder);
     }
 
     @Test
@@ -65,7 +64,6 @@ public class OrderCreateTest {
         ValidatableResponse responseOrder = orderClient.create(new Order(new String[]{getIngredients.get(0),getIngredients.get(1), getIngredients.get(4)}), "");
         getCreatingOrder = responseOrder.extract().path("order.number");
         responseOrder.assertThat().body("order.number", is(notNullValue())).and().body("success", equalTo(true));
-        System.out.println(getCreatingOrder);
     }
 
     @Test
