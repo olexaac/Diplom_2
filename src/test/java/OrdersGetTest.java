@@ -42,7 +42,6 @@ public class OrdersGetTest {
         ValidatableResponse responseGetOrders = orderClient.orders(actualAccessToken);
         getOrders = responseGetOrders.extract().path("orders.number");
         responseGetOrders.assertThat().body("orders.number", is(notNullValue())).and().statusCode(200);
-        System.out.println(getOrders);
     }
 
     @Test
